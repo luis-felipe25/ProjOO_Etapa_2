@@ -95,6 +95,7 @@ class Util {
 
 // ESTRATÉGIAS CONCRETAS
 class FastestRouteStrategy implements RouteStrategy {
+    @Override
     public Route calculateRoute(ContextoRota c) {
         double tempo = 15.0;
         if (c.trafego.equals("Pesado")) tempo += 10;
@@ -113,6 +114,7 @@ class FastestRouteStrategy implements RouteStrategy {
 }
 
 class ShortestRouteStrategy implements RouteStrategy {
+    @Override
     public Route calculateRoute(ContextoRota c) {
         double distancia = 6.5;
         double tempo = 22.0;
@@ -128,6 +130,7 @@ class ShortestRouteStrategy implements RouteStrategy {
 }
 
 class CheapestRouteStrategy implements RouteStrategy {
+    @Override
     public Route calculateRoute(ContextoRota c) {
         double tempo = 28.0;
         double distancia = 9.0;
@@ -142,6 +145,7 @@ class CheapestRouteStrategy implements RouteStrategy {
 }
 
 class EcoFriendlyStrategy implements RouteStrategy {
+    @Override
     public Route calculateRoute(ContextoRota c) {
         double tempo = 30.0;
         double distancia = 9.5;
@@ -176,13 +180,13 @@ class RoutePlanner {
 
 // SIMULADOR DE ENTRADAS
 class SimuladorDeEntradas {
-    private Random rand = new Random();
+    Random rand = new Random();
 
-    private String[] origens = {"Av. Paulista", "Centro", "Pinheiros"};
-    private String[] destinos = {"USP", "Ibirapuera", "Sé"};
-    private String[] transportes = {"Carro", "Bicicleta", "Ônibus", "Metrô"};
-    private String[] climas = {"Ensolarado", "Chuvoso", "Nublado"};
-    private String[] trafegos = {"Leve", "Moderado", "Pesado"};
+    String[] origens = {"Av. Paulista", "Centro", "Pinheiros"};
+    String[] destinos = {"USP", "Ibirapuera", "Sé"};
+    String[] transportes = {"Carro", "Bicicleta", "Ônibus", "Metrô"};
+    String[] climas = {"Ensolarado", "Chuvoso", "Nublado"};
+    String[] trafegos = {"Leve", "Moderado", "Pesado"};
 
     public ContextoRota gerarContexto() {
         String origem = origens[rand.nextInt(origens.length)];
@@ -192,4 +196,8 @@ class SimuladorDeEntradas {
         String trafego = trafegos[rand.nextInt(trafegos.length)];
         return new ContextoRota(origem, destino, transporte, clima, trafego);
     }
+}
+
+class TransportFactory{
+
 }
